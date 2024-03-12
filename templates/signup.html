@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+    .signup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .signup-card {
+        width: 350px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-signup label {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-signup input[type="text"],
+    .form-signup input[type="email"],
+    .form-signup input[type="password"] {
+        margin-bottom: 1rem;
+        padding-right: 35px; /* Adjusted for icon width */
+    }
+
+    .input-group-addon {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+        z-index: 1000; /* Ensures the icon is above the input box */
+    }
+
+    .input-group-addon i {
+        font-size: 16px;
+    }
+</style>
+
+<div class="container signup-container">
+    <div class="signup-card">
+        <h2 class="text-center mb-4">Register</h2>
+        <form class="form-signup" method="POST">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <div class="form-group position-relative">
+                <label for="inputName">Name</label>
+                <input type="text" id="inputName" class="form-control" name="name" placeholder="Name" required autofocus>
+            </div>
+            <div class="form-group position-relative">
+                <label for="inputEmail">Email</label>
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group position-relative">
+                <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" class="form-control" name="pass" placeholder="Password" required>
+            </div>
+            <div class="form-group position-relative">
+                <label for="inputRePassword">Confirm Password</label>
+                <input type="password" id="inputRePassword" class="form-control" name="re_pass" placeholder="Confirm Password" required>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+    </div>
+</div>
+</script>
+{% endblock %}

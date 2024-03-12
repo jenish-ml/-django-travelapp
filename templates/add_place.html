@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Add Place</h5>
+            <form action="" method="post" class="my-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
